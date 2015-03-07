@@ -1,26 +1,20 @@
 import pygame, os, random
 from pygame.locals import *
 
-pygame.init()
-
-width = 800
-height = 600
-screen = pygame.display.set_mode((width, height))
-pygame.display.set_caption('DODGE')
-bg = pygame.image.load('game_images/game_bg2.png')
-enemyImg = pygame.image.load('game_images/enemy2.png')
-playerImg = pygame.image.load('game_images/car.png')
-startpos = [375, 480]
-white = (255, 255, 255)
-        
-def dodged_score(count):
-    font = pygame.font.Font("freesansbold.ttf", 30)
-    text = font.render("Score : "+str(count), True, white)
-    screen.blit(text, (60,0))
-
 def main():
+
+    pygame.init()
+
+    width = 800
+    height = 600
+    screen = pygame.display.set_mode((width, height))
+    pygame.display.set_caption('DODGE')
+    bg = pygame.image.load('game_images/game_bg2.png')
+    enemyImg = pygame.image.load('game_images/enemy2.png')
+    playerImg = pygame.image.load('game_images/car.png')
+    startpos = [375, 480]
+    white = (255, 255, 255)
     score = 0
-    
     clock = pygame.time.Clock()
     
     frame_count = 0
@@ -30,6 +24,11 @@ def main():
     timer = 100
     timer1 = 0
     enemies = [[800, 600]]
+    
+  def dodged_score(count):
+    font = pygame.font.Font("freesansbold.ttf", 30)
+    text = font.render("Score : "+str(count), True, white)
+    screen.blit(text, (60,0))
 
     crashed = False
 
