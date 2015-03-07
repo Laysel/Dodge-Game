@@ -22,6 +22,10 @@ def main():
     score = 0
     
     clock = pygame.time.Clock()
+    
+    frame_count = 0
+    frame_rate = 40
+    start_time = 90
 
     timer = 100
     timer1 = 0
@@ -47,6 +51,18 @@ def main():
                 enemies.pop(index)
             enemy[1] += 7
             index += 1
+            
+        #timer
+        total_seconds = start_time - (frame_count // frame_rate)
+        if total_seconds < 0:
+            total_seconds = 0
+
+        minutes = total_seconds // 60
+        seconds = total_seconds % 60
+        output_string = "Time: {0:02}:{1:02}".format(minutes, seconds)
+        
+        font = pygame.font.Font("freesansbold.ttf", 30)
+        text = font.render(output_string, True, white)
         
         #player movement
         key = pygame.key.get_pressed()
@@ -65,6 +81,7 @@ def main():
         #update screen      
         screen.fill(0)
         screen.blit(bg, (0,0))
+        screen.blit(text, (570,0))
         screen.blit(playerImg, startpos)
         dodged_score(score)
 
@@ -78,7 +95,8 @@ def main():
                 pygame.quit()
                 crashed = True
 
-        clock.tick(40)
+        frame_count += 1
+        clock.tick(frame_rate)
 
 if __name__ == '__main__':
     main()
