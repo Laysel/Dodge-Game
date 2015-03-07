@@ -17,13 +17,13 @@ class Home(Frame):
         self.master.title("Dodge")
         self.pack(fill = BOTH, expand = YES)
 
-        self.playImage = PhotoImage(file = "images/play.gif")
-        self.helpImage = PhotoImage(file = "images/help.gif")
-        self.quitImage = PhotoImage(file = "images/quit.gif")
-        self.backImage = PhotoImage(file = "images/back.gif")
-        self.helpbgImage = PhotoImage(file = "images/helpbg.gif")
+        self.playImage = PhotoImage(file = "menu_images/play.gif")
+        self.helpImage = PhotoImage(file = "menu_images/help.gif")
+        self.quitImage = PhotoImage(file = "menu_images/quit.gif")
+        self.backImage = PhotoImage(file = "menu_images/back.gif")
+        self.helpbgImage = PhotoImage(file = "menu_images/helpbg.gif")
         
-        background = PhotoImage(file = "images/bg.gif")
+        background = PhotoImage(file = "menu_images/bg.gif")
         self.bgImage = Label(self, image = background)
         self.bgImage.image = background
         self.bgImage.pack(fill = BOTH, expand = YES)
@@ -52,7 +52,7 @@ class Home(Frame):
         self.screen()
         self.bgImage.configure(image = self.helpbgImage)
 
-        img = PhotoImage(file = "images/"+panel+".gif")
+        img = PhotoImage(file = "menu_images/"+panel+".gif")
         panel = Label(self, image = img)
         panel.image = img
         panel.place(x = 0, y = 0)
