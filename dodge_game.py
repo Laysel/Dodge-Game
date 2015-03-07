@@ -25,10 +25,10 @@ def main():
     timer1 = 0
     enemies = [[800, 600]]
     
-  def dodged_score(count):
-    font = pygame.font.Font("freesansbold.ttf", 30)
-    text = font.render("Score : "+str(count), True, white)
-    screen.blit(text, (60,0))
+    def dodged_score(count):
+        font = pygame.font.Font("freesansbold.ttf", 30)
+        text = font.render("Score : "+str(count), True, white)
+        screen.blit(text, (60,0))
 
     crashed = False
 
