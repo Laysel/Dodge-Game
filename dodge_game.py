@@ -46,8 +46,9 @@ def main():
                 timer1 += 5
         index = 0
         for enemy in enemies:
-            if enemy[0] < -64:
+            if enemy[0] > 600:
                 enemies.pop(index)
+                score += 1
             enemy[1] += 7
             index += 1
             
@@ -74,8 +75,6 @@ def main():
             startpos[0] += distance
         elif key[pygame.K_LEFT]:
             startpos[0] -= distance
-            
-            score += 1
         
         #update screen      
         screen.fill(0)
