@@ -130,8 +130,8 @@ def main():
                     
                 pygame.display.update()      
             
-            #collision with wall
-            if startpos[0] > width - player_width or startpos[0] < 0:
+        #collision with wall
+        if startpos[0] > width - player_width or startpos[0] < 0:
             font = pygame.font.SysFont("comicsansms", 115)
             text = font.render("You crashed!", True, red)
             screen.blit(text, (60, 200))
@@ -167,8 +167,46 @@ def main():
                     quit_game()
                     
                 pygame.display.update()
+        
+        #timer reaches zero
+        if minutes == 0 and seconds == 0:
+            font = pygame.font.SysFont("comicsansms", 50)
+            text = font.render("Your score is "+str(score)+".", True, black)
+            screen.blit(TUImg, (0,0))
+            screen.blit(text, (200, 250))
 
-            
+            while True:           
+                for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                           pygame.quit()
+                           quit()
+
+                mouse1 = pygame.mouse.get_pos()
+                click1 = pygame.mouse.get_pressed()
+                
+                pygame.draw.rect(screen, green, (150, 450, 100, 50))
+                smallText1 = pygame.font.SysFont("comicsansms", 20)
+                textSurf1, textRect1 = text_objects("Retry", smallText1)
+                textRect1.center = ((150 + (100/2)), (450 + (50/2)))
+                screen.blit(textSurf1, textRect1)
+
+                if 250 > mouse1[0] > 150 and 500 > mouse1[1] > 450 and click1[0] == 1:
+                    main()
+
+                mouse = pygame.mouse.get_pos()
+                click = pygame.mouse.get_pressed()
+
+                pygame.draw.rect(screen, red, (550, 450, 100, 50))
+                smallText = pygame.font.SysFont("comicsansms", 20)
+                textSurf, textRect = text_objects("Quit", smallText)
+                textRect.center = ((550 + (100/2)), (450 + (50/2)))
+                screen.blit(textSurf, textRect)
+
+                if 650 > mouse[0] > 550 and 500 > mouse[1] > 450 and click[0] == 1:
+                    quit_game()
+                        
+                pygame.display.update()
+                
         #update screen      
         screen.fill(0)
         screen.blit(bg, (0,0))
