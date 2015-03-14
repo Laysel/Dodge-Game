@@ -57,7 +57,7 @@ def main():
         for enemy in enemies:
             if enemy[0] > 600:
                 enemies.pop(index)
-                score += 1
+                score += 1 #adding the score
             enemy[1] += 7
             index += 1
             
@@ -96,13 +96,24 @@ def main():
         screen.blit(playerImg, startpos)
         dodged_score(score)
 
-        pygame.display.update()
+        
 
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 gameExit = True
+                
+            if event.type == pygame.KEYDOWN:
+                if event.key == K_UP:
+                    startpos[1] -= distance
+                elif event.key == K_DOWN:
+                    startpos[1] += distance
+                elif event.key == K_LEFT:
+                    startpos[0] -= distance
+                elif event.key == K_RIGHT:
+                    startpos[0] += distance
 
+        pygame.display.update()
         frame_count += 1
         clock.tick(frame_rate)
 
