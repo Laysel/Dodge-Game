@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 import tkinter as tk
-import dodge
+import dodge_game
 
 class Home(Frame):
     
@@ -44,7 +44,7 @@ class Home(Frame):
 
     def play(self):
         
-        dodge.main()
+        dodge_game.main()
         self.master.withdraw()
 
     def help_bg(self, panel):
