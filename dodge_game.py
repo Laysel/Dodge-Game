@@ -15,27 +15,33 @@ def main():
 
     width = 800
     height = 600
+    
     screen = pygame.display.set_mode((width, height))
     pygame.display.set_caption('DODGE')
+    
     bg = pygame.image.load('game_images/game_bg2.png')
     enemyImg = pygame.image.load('game_images/enemy2.png')
     playerImg = pygame.image.load('game_images/car.png')
     TUImg = pygame.image.load('game_images/tu.png')
-    startpos = [375, 480]
+    
+    black = (0, 0 , 0)
     white = (255, 255, 255)
+    red = (255, 0, 0 )
+    green = (0, 200, 0)
+    
     score = 0
+    startpos = [375, 480]
+    timer = 100
+    timer1 = 0
+    enemies = [[800, 600]]
     clock = pygame.time.Clock()
     
     frame_count = 0
     frame_rate = 40
     start_time = 90
 
-    timer = 100
-    timer1 = 0
-    enemies = [[800, 600]]
-    
-    def dodged_score(count):
-        font = pygame.font.Font("freesansbold.ttf", 30)
+    def score_count(count):
+        font = pygame.font.Font("comicsansms", 30)
         text = font.render("Score : "+str(count), True, white)
         screen.blit(text, (60,0))
 
@@ -70,20 +76,8 @@ def main():
         seconds = total_seconds % 60
         output_string = "Time: {0:02}:{1:02}".format(minutes, seconds)
         
-        font = pygame.font.Font("freesansbold.ttf", 30)
+        font = pygame.font.Font("comicsansms", 30)
         text = font.render(output_string, True, white)
-        
-        #player movement
-        key = pygame.key.get_pressed()
-        distance = 15
-        if key[pygame.K_DOWN]:
-            startpos[1] += distance
-        elif key[pygame.K_UP]:
-            startpos[1] -= distance
-        elif key[pygame.K_RIGHT]:
-            startpos[0] += distance
-        elif key[pygame.K_LEFT]:
-            startpos[0] -= distance
         
         #update screen      
         screen.fill(0)
@@ -94,7 +88,7 @@ def main():
             screen.blit(enemyImg, enemy)
             
         screen.blit(playerImg, startpos)
-        dodged_score(score)
+        score_count(score)
 
         
 
@@ -102,7 +96,8 @@ def main():
             if event.type == QUIT:
                 pygame.quit()
                 gameExit = True
-                
+            
+            #player movement
             if event.type == pygame.KEYDOWN:
                 if event.key == K_UP:
                     startpos[1] -= distance
