@@ -23,10 +23,12 @@ class Home(Frame):
         self.backImage = PhotoImage(file = "menu_images/back.gif")
         self.helpbgImage = PhotoImage(file = "menu_images/helpbg.gif")
         
+        self.pack(fill = BOTH, expand = YES)
+        
         background = PhotoImage(file = "menu_images/bg.gif")
         self.bgImage = Label(self, image = background)
         self.bgImage.image = background
-        self.bgImage.pack(fill = BOTH, expand = YES)
+        self.bgImage.place(x = -2, y = -2)
         
     def buttons(self):
 
