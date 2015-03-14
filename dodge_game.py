@@ -20,6 +20,7 @@ def main():
     bg = pygame.image.load('game_images/game_bg2.png')
     enemyImg = pygame.image.load('game_images/enemy2.png')
     playerImg = pygame.image.load('game_images/car.png')
+    TUImg = pygame.image.load('game_images/tu.png')
     startpos = [375, 480]
     white = (255, 255, 255)
     score = 0
@@ -38,10 +39,10 @@ def main():
         text = font.render("Score : "+str(count), True, white)
         screen.blit(text, (60,0))
 
-    crashed = False
+    gameExit = False
 
-    while not crashed:
-
+    while not gameExit:
+        pygame.font.init()
         timer -= 1
         
         #add enemies
@@ -88,18 +89,19 @@ def main():
         screen.fill(0)
         screen.blit(bg, (0,0))
         screen.blit(text, (570,0))
+        
+        for enemy in enemies:
+            screen.blit(enemyImg, enemy)
+            
         screen.blit(playerImg, startpos)
         dodged_score(score)
 
-        for enemy in enemies:
-            screen.blit(enemyImg, enemy)
-
-        pygame.display.flip()
+        pygame.display.update()
 
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
-                crashed = True
+                gameExit = True
 
         frame_count += 1
         clock.tick(frame_rate)
