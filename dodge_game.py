@@ -30,8 +30,7 @@ def main():
     red = (255, 0, 0 )
     green = (0, 200, 0)
     
-    score = 0
-    startpos = [375, 480]
+    startpos = [375, 380]
     player_width = 60
     timer = 100
     timer1 = 0
@@ -53,6 +52,7 @@ def main():
     while not gameExit:
         pygame.font.init()
         timer -= 1
+        score = 0
         
         #timer
         total_seconds = start_time - (frame_count // frame_rate)
@@ -77,10 +77,10 @@ def main():
         index = 0
         for enemy in enemies:
             if enemy[0] > 600:
-                enemies.pop(index)
-                score += 1 #adding the score
-            enemy[1] += 7
+                enemies.pop(index) 
+            enemy[1] += 10
             index += 1
+            score += 1
             
         #collision between cars
         enemyRect = enemyImg.get_rect()
@@ -131,7 +131,7 @@ def main():
                 pygame.display.update()      
             
         #collision with wall
-        if startpos[0] > width - player_width or startpos[0] < 0:
+        if startpos[0] > width - player_width or startpos[0] < 0 or startpos[1] > 500:
             font = pygame.font.SysFont("comicsansms", 115)
             text = font.render("You crashed!", True, red)
             screen.blit(text, (60, 200))
