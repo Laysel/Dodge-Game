@@ -40,7 +40,7 @@ def main():
     
     frame_count = 0
     frame_rate = 40
-    start_time = 90
+    start_time = 30
 
     def score_count(count):
         font = pygame.font.SysFont("comicsansms", 30)
@@ -131,7 +131,7 @@ def main():
                 pygame.display.update()      
             
         #collision with wall
-        if startpos[0] > width - player_width or startpos[0] < 0 or startpos[1] > 500:
+        if startpos[0] > width - player_width or startpos[0] < 0 or startpos[1] > 500 or startpos[1] + player_width < 0:
             font = pygame.font.SysFont("comicsansms", 115)
             text = font.render("You crashed!", True, red)
             screen.blit(text, (60, 200))
